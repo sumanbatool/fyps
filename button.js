@@ -1,13 +1,23 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import React from 'react'
-
-const Button = ({ title,onPress }) => (
-  <TouchableOpacity style={styleSignUpButton.button} onPress={onPress}>
-    <Text style={styleSignUpButton.Text}>{title}</Text>
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import React from 'react';
+const Button = ({title, onPress, disabled, isValid}) => (
+  <TouchableOpacity
+    style={[
+      styleSignUpButton.button,
+      isValid ? styleSignUpButton.validButton : null,
+    ]}
+    onPress={onPress}
+    disabled={disabled}>
+    <Text
+      style={[
+        styleSignUpButton.Text,
+        isValid ? styleSignUpButton.validText : null,
+      ]}>
+      {title}
+    </Text>
   </TouchableOpacity>
 );
 const styleSignUpButton = StyleSheet.create({
-
   button: {
     position: 'absolute',
     height: 50,
@@ -26,8 +36,14 @@ const styleSignUpButton = StyleSheet.create({
   Text: {
     textAlign: 'center',
     fontSize: 20,
-    color: '#1E90FF'
-  }
-})
+    color: '#1E90FF',
+  },
+  validButton: {
+    backgroundColor: '#1B5DEC',
+  },
+  validText: {
+    color: '#fff',
+  },
+});
 
 export default Button;
